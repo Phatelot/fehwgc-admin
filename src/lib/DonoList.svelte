@@ -35,7 +35,7 @@
     dirty = true;
     donations.push({
       target: 'edelgard',
-      targetOutfit: 'base',
+      targetOutfit: 'undeclared',
       amount: 0,
     });
     donations = donations;

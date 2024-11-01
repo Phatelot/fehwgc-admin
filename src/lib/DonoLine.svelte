@@ -15,10 +15,6 @@
       return (outfitSlug === 'broken') || (findChar(charNameSlug)?.outfits || []).map(outfit => outfit.outfitSlug).includes(outfitSlug)
     }
 
-    function firstOutfit(charNameSlug: string): string {
-      return (findChar(charNameSlug)?.outfits || []).map(outfit => outfit.outfitSlug)[0] || "base";
-    }
-
     const dispatch = createEventDispatcher();
 
     function dispatchDelete() {
@@ -27,7 +23,7 @@
 
     function dispatchChange() {
       if (!hasOutfit(donation.target, donation.targetOutfit)) {
-        donation.targetOutfit = firstOutfit(donation.target)
+        donation.targetOutfit = 'undeclared'
       }
 
       dispatch('change');
@@ -68,6 +64,7 @@
       {/each}
     </select>
     <select bind:value={donation.targetOutfit} on:change={dispatchChange}>
+      <option value="undeclared">undeclared</option>
       {#each characters[donation.target].outfits as possibleOutfit}
         <option value={possibleOutfit}>
          {possibleOutfit}
