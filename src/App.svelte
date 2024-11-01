@@ -8,12 +8,19 @@
         "Accept": "application/vnd.github+json",
       },
     });
-    return JSON.parse(await response.text())
-      .files['donos.csv']
+    const file = JSON.parse(await response.text())
+      .files['donos.csv'] || {content: ''};
+
+    return file
       .content
       .split('\n')
       .map((line: string) => line.split(','))
-      .map((split: string[]) => ({target: split[0],targetOutfit: split[1], amount: parseInt(split[2])}));
+      .map((split: string[]) => ({
+        target: split[0],
+        targetOutfit: split[1],
+        amount: parseInt(split[2]),
+      }))
+      .filter((d: any) => !!d.target);
   }
 </script>
 

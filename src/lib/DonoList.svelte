@@ -34,7 +34,7 @@
   function addDonation() {
     dirty = true;
     donations.push({
-      target: 'Edelgard',
+      target: 'edelgard',
       targetOutfit: 'base',
       amount: 0,
     });

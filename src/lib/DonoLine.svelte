@@ -1,6 +1,23 @@
 <script lang="ts">
+    import { baseMetadata } from "./character_metadata";
     import type { Donation } from "./common";
     import { createEventDispatcher } from 'svelte';
+    import type { CharacterBaseMetadata } from "./model";
+
+    function findChar(charNameSlug: string): CharacterBaseMetadata | null {
+      return baseMetadata
+        .flatMap(game => game.characters)
+        .filter(c => c.nameSlug === charNameSlug)
+        .at(0) || null;
+    }
+
+    function hasOutfit(charNameSlug: string, outfitSlug: string): boolean {
+      return (outfitSlug === 'broken') || (findChar(charNameSlug)?.outfits || []).map(outfit => outfit.outfitSlug).includes(outfitSlug)
+    }
+
+    function firstOutfit(charNameSlug: string): string {
+      return (findChar(charNameSlug)?.outfits || []).map(outfit => outfit.outfitSlug)[0] || "base";
+    }
 
     const dispatch = createEventDispatcher();
 
@@ -9,36 +26,33 @@
     }
 
     function dispatchChange() {
+      if (!hasOutfit(donation.target, donation.targetOutfit)) {
+        donation.targetOutfit = firstOutfit(donation.target)
+      }
+
       dispatch('change');
     }
 
-    const games = {
-      radiant_dawn: {
-        color: "blue"
-      },
-      three_houses: {
-        color: "red"
-      },
-    }
 
-  const characters : Record<string, any>= {
-    'Edelgard': {
-      game: games.three_houses,
-      outfits: ['timeskip', 'empress','christmas','summer', 'corrupted'],
-    },
-    'Dorothea': {
-      game: games.three_houses,
-      outfits: ['twilight_harmony','yuletide_dancer','solar_songstress'],
-    },
-    'Altina': {
-      game: games.radiant_dawn,
-      outfits: ['christmas','unrivaled_dawn','summer'],
-    },
-    'Titania': {
-      game: games.radiant_dawn,
-      outfits: ['summer'],
-    },
-  }
+  type CharViewModel = {
+    color: string;
+    outfits: string[];
+  };
+
+
+  const tmp : any = baseMetadata
+    .flatMap(game => game.characters
+      .map(character => ([
+        character.nameSlug,
+        {
+          color: game.darkColor,
+          outfits: character.outfits.map(outfit => outfit.outfitSlug || 'base')
+        }
+      ]
+    )
+  ));
+
+  const characters : Record<string, CharViewModel> = Object.fromEntries(tmp);
 
   const possibleTargets = Object.keys(characters).sort();
 
@@ -46,15 +60,14 @@
 </script>
 
 <form>
-    <select bind:value={donation.target} class={characters[donation.target].game.color} on:change={dispatchChange}>
+    <select bind:value={donation.target} style="color: {characters[donation.target].color}; font-weight: 600;" on:change={dispatchChange}>
       {#each possibleTargets as possibleTarget}
-        <option class={characters[possibleTarget].game.color} value={possibleTarget}>
+        <option style="color: {characters[possibleTarget].color}; font-weight: 600;" value={possibleTarget}>
          {possibleTarget}
         </option>
       {/each}
     </select>
     <select bind:value={donation.targetOutfit} on:change={dispatchChange}>
-      <option value="base">base</option>
       {#each characters[donation.target].outfits as possibleOutfit}
         <option value={possibleOutfit}>
          {possibleOutfit}
@@ -62,21 +75,11 @@
       {/each}
       <option value="broken">broken</option>
     </select>
-    <input type="number" bind:value={donation.amount} min="0" on:change={dispatchChange} />
+    <input type="number" bind:value={donation.amount} min="1" on:change={dispatchChange} />
     <input type="button" value="X" class="delete" on:click={dispatchDelete}/>
 </form>
 
 <style>
-  .blue {
-    color: blue;
-    font-weight: 900;
-  }
-
-  .red {
-    color: darkred;
-    font-weight: 900;
-  }
-
   form {
     display: flex;
   }
