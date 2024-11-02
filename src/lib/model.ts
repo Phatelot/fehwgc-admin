@@ -1,4 +1,4 @@
-type Shape = '💎' | '🍎' | '⌛' | '🔵' | '🍐';
+type Shape = '💎' | '🍎' | '⌛' | '🟣' | '🍐';
 
 export type CharacterBaseMetadata = {
     name: string;
