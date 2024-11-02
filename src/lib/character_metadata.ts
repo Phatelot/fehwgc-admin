@@ -2135,6 +2135,12 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "secondaryShape": "⌛"
                     },
                     {
+                        "outfitWeightThresholdInLb": 400.0,
+                        "mainShape": "⌛",
+                        "outfit": "Summer",
+                        "outfitSlug": "summer"
+                    },
+                    {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "💎",
                         "outfit": "New Year",
@@ -2146,17 +2152,6 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "outfit": "Ninja",
                         "outfitSlug": "ninja",
                         "secondaryShape": "⌛"
-                    }
-                ]
-            },
-            {
-                "name": "Laegjarn (Summer",
-                "nameSlug": "laegjarn_summer",
-                "heightInCm": 160.0,
-                "outfits": [
-                    {
-                        "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "⌛"
                     }
                 ]
             },
@@ -3753,6 +3748,12 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "mainShape": "🟣"
                     },
                     {
+                        "outfitWeightThresholdInLb": 400.0,
+                        "mainShape": "🍐",
+                        "outfit": "Summer",
+                        "outfitSlug": "summer"
+                    },
+                    {
                         "outfitWeightThresholdInLb": 200.0,
                         "mainShape": "🍎",
                         "outfit": "Askr",
@@ -3764,17 +3765,6 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "outfit": "Dancer",
                         "outfitSlug": "dancer",
                         "secondaryShape": "🟣"
-                    }
-                ]
-            },
-            {
-                "name": "Linde (Summer",
-                "nameSlug": "linde_summer",
-                "heightInCm": 160.0,
-                "outfits": [
-                    {
-                        "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
                     }
                 ]
             },
