@@ -3084,8 +3084,8 @@ export const baseMetadata: GameBaseMetadata[] = [
         ],
     },
     {
-        name: "Path of Radiance",
-        nameSlug: "path_of_radiance",
+        name: "Tellius",
+        nameSlug: "tellius",
         darkColor: '#2e4cc7',
         lightColor: '#91bfff',
         characters: [
@@ -3344,15 +3344,7 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "outfitSlug": "harvest"
                     }
                 ]
-            }
-        ],
-    },
-    {
-        name: "Radiant Dawn",
-        nameSlug: "radiant",
-        darkColor: '#2e4cc7',
-        lightColor: '#91bfff',
-        characters: [
+            },
             {
                 "name": "Lucia",
                 "nameSlug": "lucia",
