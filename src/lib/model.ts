@@ -4,6 +4,7 @@ export type CharacterBaseMetadata = {
     name: string;
     nameSlug: string;
     heightInCm?: number;
+    initialRoaster?: boolean;
     outfits: {
         outfitWeightThresholdInLb: number;
         mainShape: Shape;
