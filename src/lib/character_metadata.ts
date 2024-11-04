@@ -1,4 +1,59 @@
-import type { GameBaseMetadata } from './model';
+export type Shape = '💎' | '🍎' | '⌛' | '🟣' | '🍐';
+
+export type OutfitBaseMetadata = {
+    outfitWeightThresholdInLb: number;
+    mainShape: Shape;
+    secondaryShape?: Shape;
+    outfit: string;
+    outfitSlug: string;
+};
+
+export type CharacterBaseMetadata = {
+    name: string;
+    nameSlug: string;
+    heightInCm: number;
+    initialRoaster?: boolean;
+    outfits: OutfitBaseMetadata[];
+};
+
+export type GameBaseMetadata = {
+    name: string;
+    nameSlug: string;
+    darkColor: string;
+    lightColor: string;
+    characters: CharacterBaseMetadata[];
+}
+
+export function getCharacterDisplayName(nameSlug: string): string {
+    for (const game of baseMetadata) {
+        for (const character of game.characters) {
+            if (character.nameSlug === nameSlug) {
+                return character.name;
+            }
+        }
+    }
+    return nameSlug;
+}
+
+export function getCharacterOutfitDisplayName(characterNameSlug: string, outfitSlug?: string): string {
+    if (outfitSlug === 'broken') {
+        return 'Broken'
+    } else if (!outfitSlug) {
+        return 'Base'
+    }
+    for (const game of baseMetadata) {
+        for (const character of game.characters) {
+            if (character.nameSlug === characterNameSlug) {
+                for (const outfit of character.outfits) {
+                    if (outfit.outfitSlug === outfitSlug) {
+                        return outfit.outfit as string
+                    }
+                }
+            }
+        }
+    }
+    return outfitSlug;
+}
 
 export const baseMetadata: GameBaseMetadata[] = [
     {
@@ -14,7 +69,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -69,7 +126,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -80,7 +139,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -91,7 +152,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 450.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -102,7 +165,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -113,7 +178,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -124,7 +191,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -168,7 +237,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 450.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -180,7 +251,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 350.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 450.0,
@@ -198,7 +271,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 450.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -230,7 +305,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 250.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -282,7 +359,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 450.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -300,7 +379,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -319,7 +400,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 350.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -336,7 +419,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -374,7 +459,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -391,7 +478,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -414,7 +503,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 250.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 450.0,
@@ -477,7 +568,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -495,7 +588,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -506,7 +601,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -517,7 +614,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -548,7 +647,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 450.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -581,7 +682,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -592,7 +695,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 250.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -624,7 +729,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 450.0,
                         "mainShape": "💎",
-                        "secondaryShape": "⌛"
+                        "secondaryShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -636,7 +743,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 550.0,
@@ -654,7 +763,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -666,7 +777,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -678,7 +791,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -702,7 +817,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -734,7 +851,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 600.0,
                         "mainShape": "💎",
-                        "secondaryShape": "⌛"
+                        "secondaryShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -773,7 +892,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -845,7 +966,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -856,7 +979,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -873,7 +998,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -897,7 +1024,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -915,7 +1044,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -947,7 +1078,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -959,7 +1092,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 450.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -971,7 +1106,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 200.0,
@@ -1016,7 +1153,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 300.0,
                         "mainShape": "🍐",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -1033,7 +1172,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1044,7 +1185,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -1068,7 +1211,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 450.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1079,7 +1224,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -1111,7 +1258,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1122,7 +1271,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 700.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1133,7 +1284,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1144,7 +1297,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1166,8 +1321,8 @@ export const baseMetadata: GameBaseMetadata[] = [
     {
         name: "Engage",
         nameSlug: "engage",
-        darkColor: '#fe8aff',
-        lightColor: '#5937c7',
+        darkColor: '#5937c7',
+        lightColor: '#fe8aff',
         characters: [
             {
                 "name": "Female Alear",
@@ -1177,7 +1332,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 300.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -1195,7 +1352,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "💎",
-                        "secondaryShape": "⌛"
+                        "secondaryShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -1221,7 +1380,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -1238,7 +1399,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -1256,7 +1419,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 600.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1267,7 +1432,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -1285,7 +1452,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -1303,7 +1472,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1314,7 +1485,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1326,7 +1499,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 600.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1365,7 +1540,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1390,7 +1567,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             }
@@ -1409,7 +1588,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -1475,7 +1656,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 200.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -1526,7 +1709,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -1549,7 +1734,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1561,7 +1748,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 200.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -1605,7 +1794,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -1649,7 +1840,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1660,7 +1853,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -1678,7 +1873,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 450.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -1697,7 +1894,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -1715,7 +1914,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1727,7 +1928,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -1805,7 +2008,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -1823,7 +2028,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 450.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -1846,7 +2053,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -1863,7 +2072,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -1888,7 +2099,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1900,7 +2113,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 600.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -1933,7 +2148,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 350.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -1951,7 +2168,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 300.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -1968,7 +2187,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 450.0,
@@ -1986,7 +2207,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 250.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -2004,7 +2227,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 450.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -2029,7 +2254,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 350.0,
                         "mainShape": "🍐",
-                        "secondaryShape": "⌛"
+                        "secondaryShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -2053,7 +2280,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -2102,7 +2331,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -2127,7 +2358,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -2165,7 +2398,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2176,7 +2411,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 450.0,
@@ -2194,7 +2431,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2205,7 +2444,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 250.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -2236,7 +2477,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -2255,7 +2498,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 200.0,
                         "mainShape": "🍐",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -2287,7 +2532,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 200.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -2311,7 +2558,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🍐",
-                        "secondaryShape": "⌛"
+                        "secondaryShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -2342,7 +2591,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 250.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -2374,7 +2625,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -2400,7 +2653,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "⌛"
+                        "secondaryShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2411,7 +2666,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 600.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2422,7 +2679,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -2447,7 +2706,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 600.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2458,7 +2719,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -2489,7 +2752,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -2506,7 +2771,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -2530,7 +2797,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 450.0,
@@ -2555,7 +2824,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 450.0,
@@ -2572,7 +2843,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -2590,7 +2863,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -2616,7 +2891,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 550.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2627,7 +2904,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 450.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2638,7 +2917,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2650,7 +2931,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2662,7 +2945,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 450.0,
@@ -2694,7 +2979,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -2720,7 +3007,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -2744,7 +3033,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2771,7 +3062,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -2795,7 +3088,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2806,7 +3101,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2817,7 +3114,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2829,7 +3128,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🍐",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -2853,7 +3154,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 300.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -2884,7 +3187,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2895,7 +3200,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 200.0,
@@ -2913,7 +3220,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 350.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -2931,7 +3240,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -2969,7 +3280,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -2981,7 +3294,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 200.0,
@@ -3012,7 +3327,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3024,7 +3341,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3056,7 +3375,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3067,7 +3388,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3078,7 +3401,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             }
@@ -3098,7 +3423,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -3116,7 +3443,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -3163,7 +3492,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "🍐",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -3194,7 +3525,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -3212,7 +3545,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -3231,7 +3566,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3243,7 +3580,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🍐",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3256,7 +3595,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 450.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3293,7 +3634,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -3318,7 +3661,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 350.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3356,7 +3701,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -3374,7 +3721,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -3399,7 +3748,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -3431,7 +3782,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3476,7 +3829,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 250.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -3541,7 +3896,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3552,7 +3909,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3563,7 +3922,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 250.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -3587,7 +3948,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3598,7 +3961,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -3616,7 +3981,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3628,7 +3995,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "🍐",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -3666,7 +4035,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 200.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -3710,7 +4081,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 450.0,
@@ -3729,7 +4102,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3740,7 +4115,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 250.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 200.0,
@@ -3764,7 +4141,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3776,7 +4155,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 450.0,
@@ -3799,7 +4180,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -3825,7 +4208,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 200.0,
@@ -3868,7 +4253,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3879,7 +4266,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 600.0,
@@ -3898,7 +4287,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🍐",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -3915,7 +4306,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "💎"
+                        "mainShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3926,7 +4319,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3937,7 +4332,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3949,7 +4346,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3961,7 +4360,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 550.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -3972,7 +4373,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             }
@@ -3991,7 +4394,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -4002,7 +4407,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -4014,7 +4421,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -4026,7 +4435,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -4046,7 +4457,7 @@ export const baseMetadata: GameBaseMetadata[] = [
     },
     {
         name: "Three Houses",
-        nameSlug: "threehouses",
+        nameSlug: "three_houses",
         darkColor: '#9f9b91',
         lightColor: '#fff7db',
         characters: [
@@ -4054,11 +4465,14 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "name": "Female Byleth",
                 "nameSlug": "female_byleth",
                 "heightInCm": 164.0,
+                "initialRoaster": true,
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -4102,7 +4516,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -4139,7 +4555,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 300.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 500.0,
@@ -4157,7 +4575,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -4182,7 +4602,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -4194,7 +4616,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 500.0,
                         "mainShape": "⌛",
-                        "secondaryShape": "🍐"
+                        "secondaryShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -4205,7 +4629,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍎"
+                        "mainShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -4230,7 +4656,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🟣",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -4242,7 +4670,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 600.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🍎"
+                        "secondaryShape": "🍎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -4267,7 +4697,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -4317,7 +4749,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 250.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 400.0,
@@ -4361,7 +4795,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 350.0,
@@ -4393,7 +4829,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -4404,7 +4842,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "⌛"
+                        "mainShape": "⌛",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -4416,7 +4856,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 250.0,
                         "mainShape": "💎",
-                        "secondaryShape": "🟣"
+                        "secondaryShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -4447,7 +4889,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 350.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
@@ -4472,7 +4916,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 500.0,
-                        "mainShape": "🍐"
+                        "mainShape": "🍐",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     }
                 ]
             },
@@ -4483,7 +4929,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                 "outfits": [
                     {
                         "outfitWeightThresholdInLb": 400.0,
-                        "mainShape": "🟣"
+                        "mainShape": "🟣",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 250.0,
@@ -4515,7 +4963,9 @@ export const baseMetadata: GameBaseMetadata[] = [
                     {
                         "outfitWeightThresholdInLb": 400.0,
                         "mainShape": "🍎",
-                        "secondaryShape": "💎"
+                        "secondaryShape": "💎",
+                        "outfit": "Base",
+                        "outfitSlug": "base",
                     },
                     {
                         "outfitWeightThresholdInLb": 300.0,
