@@ -244,6 +244,10 @@ const fortunesWeaveFlameLordCrewGroup = {
     name: "Flame Lord Crew",
     slug: "flame_lord_crew",
 }
+const fortunesWeaveIndependantGroup = {
+    name: "Independant",
+    slug: "independant",
+}
 
 export const baseMetadata: GameBaseMetadata[] = [
     {
@@ -1370,7 +1374,14 @@ export const baseMetadata: GameBaseMetadata[] = [
                         secondaryShape: "⌛",
                         "outfit": "Legendary replendent",
                         "outfitSlug": "legendary_resplendent",
-                    }
+                    },
+                    {
+                        "outfitWeightThresholdInLb": 300.0,
+                        "mainShape": "🍎",
+                        "outfit": "Sacae",
+                        "outfitSlug": "sacae",
+                        introducedAfterDonation: 1
+                    },
                 ]
             },
             {
@@ -2064,6 +2075,14 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "outfit": "Fallen",
                         "outfitSlug": "fallen",
                     },
+                    {
+                        "outfitWeightThresholdInLb": 350.0,
+                        "mainShape": "⌛",
+                        secondaryShape: "🟣",
+                        "outfit": "Ninja",
+                        "outfitSlug": "ninja",
+                        introducedAfterDonation: 1,
+                    },
                 ]
             },
             {
@@ -2164,6 +2183,14 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "outfit": "Summer",
                         "outfitSlug": "summer",
                         "secondaryShape": "💎"
+                    },
+                    {
+                        "outfitWeightThresholdInLb": 650.0,
+                        "mainShape": "🍐",
+                        "outfit": "Harvest",
+                        "outfitSlug": "harvest",
+                        "secondaryShape": "🍐",
+                        introducedAfterDonation: 1
                     }
                 ]
             },
@@ -3146,7 +3173,15 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "mainShape": "🍎",
                         "outfit": "New Year",
                         "outfitSlug": "new_year"
-                    }
+                    },
+                    {
+                        "outfitWeightThresholdInLb": 400.0,
+                        "mainShape": "🟣",
+                        "secondaryShape": "🟣",
+                        "outfit": "Ninja",
+                        "outfitSlug": "ninja",
+                        introducedAfterDonation: 1
+                    },
                 ]
             },
             {
@@ -4038,6 +4073,13 @@ export const baseMetadata: GameBaseMetadata[] = [
                         secondaryShape: "🍐",
                         outfitWeightThresholdInLb: 350,
                     },
+                    {
+                        outfit: "Mythic",
+                        outfitSlug: 'mythic',
+                        mainShape: "🍐",
+                        outfitWeightThresholdInLb: 400,
+                        introducedAfterDonation: 1,
+                    },
                 ]
             },
             {
@@ -4073,6 +4115,14 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "outfit": "Ninja",
                         "outfitSlug": "ninja",
                         "secondaryShape": "💎",
+                    },
+                    {
+                        "outfitWeightThresholdInLb": 600.0,
+                        "mainShape": "🍐",
+                        "outfit": "Vista",
+                        "outfitSlug": "vista",
+                        "secondaryShape": "⌛",
+                        introducedAfterDonation: 1
                     },
                 ]
             },
@@ -4997,6 +5047,38 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "mainShape": "💎",
                         "outfit": "Base",
                         "outfitSlug": "base",
+                    }
+                ]
+            },
+            {
+                "name": "Rose",
+                "nameSlug": "rose",
+                "heightInCm": 160.0,
+                "build": 'Regular',
+                "outfits": [
+                    {
+                        "outfitWeightThresholdInLb": 500.0,
+                        "mainShape": "🍐",
+                        secondaryShape: "🍎",
+                        "outfit": "Harvest",
+                        "outfitSlug": "harvest",
+                        introducedAfterDonation: 1,
+                    }
+                ]
+            },
+            {
+                "name": "Kurt",
+                "nameSlug": "kurt",
+                "heightInCm": 173.0,
+                "build": 'Regular',
+                "outfits": [
+                    {
+                        "outfitWeightThresholdInLb": 350.0,
+                        "mainShape": "🍎",
+                        secondaryShape: "🍐",
+                        "outfit": "Harvest",
+                        "outfitSlug": "harvest",
+                        introducedAfterDonation: 1,
                     }
                 ]
             }
@@ -6492,7 +6574,15 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "outfit": "Summer",
                         "outfitSlug": "summer",
                         "secondaryShape": "⌛"
-                    }
+                    },
+                    {
+                        "outfitWeightThresholdInLb": 350.0,
+                        "mainShape": "🍐",
+                        "outfit": "Sacae",
+                        "outfitSlug": "sacae",
+                        "secondaryShape": "🍐",
+                        introducedAfterDonation: 1
+                    },
                 ]
             },
             {
@@ -6695,6 +6785,14 @@ export const baseMetadata: GameBaseMetadata[] = [
                         mainShape: "🍎",
                         secondaryShape: "🟣",
                         outfitWeightThresholdInLb: 400,
+                    },
+                    {
+                        "outfit": "Duo",
+                        "outfitSlug": "duo",
+                        mainShape: "🍐",
+                        secondaryShape: "🍐",
+                        outfitWeightThresholdInLb: 400,
+                        introducedAfterDonation: 1,
                     },
                 ]
             },
@@ -6953,6 +7051,14 @@ export const baseMetadata: GameBaseMetadata[] = [
                         mainShape: "🟣",
                         outfitWeightThresholdInLb: 300,
                     },
+                    {
+                        outfit: "Duo",
+                        outfitSlug: 'duo',
+                        mainShape: "🍎",
+                        secondaryShape: "🍎",
+                        outfitWeightThresholdInLb: 400,
+                        introducedAfterDonation: 1,
+                    },
                 ]
             },
             {
@@ -7067,6 +7173,56 @@ export const baseMetadata: GameBaseMetadata[] = [
                         secondaryShape: "🍎",
                         "outfit": "Base",
                         "outfitSlug": "base",
+                    }
+                ]
+            },
+            {
+                "name": "Catania",
+                "nameSlug": "catania",
+                "heightInCm": 166,
+                "build": 'Regular',
+                "group": fortunesWeaveFlameLordCrewGroup,
+                "outfits": [
+                    {
+                        outfitWeightThresholdInLb: 250,
+                        mainShape: "🍎",
+                        secondaryShape: "💎",
+                        outfit: "Ninja",
+                        outfitSlug: "ninja",
+                        introducedAfterDonation: 1
+                    }
+                ]
+            },
+            {
+                "name": "Alexandra",
+                "nameSlug": "alexandra",
+                "heightInCm": 164,
+                "build": 'Regular',
+                "group": fortunesWeaveFlameLordCrewGroup,
+                "outfits": [
+                    {
+                        outfitWeightThresholdInLb: 250,
+                        mainShape: "🍐",
+                        secondaryShape: "⌛",
+                        outfit: "Ninja",
+                        outfitSlug: "ninja",
+                        introducedAfterDonation: 1
+                    }
+                ]
+            },
+            {
+                "name": "Eshmel",
+                "nameSlug": "female_eshmel",
+                "heightInCm": 167,
+                "build": 'Regular',
+                "group": fortunesWeaveIndependantGroup,
+                "outfits": [
+                    {
+                        outfitWeightThresholdInLb: 600,
+                        mainShape: "🟣",
+                        outfit: "Base",
+                        outfitSlug: "base",
+                        introducedAfterDonation: 1
                     }
                 ]
             },
