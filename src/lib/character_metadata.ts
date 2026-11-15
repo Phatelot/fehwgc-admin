@@ -316,6 +316,13 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "outfit": "Hot Spring",
                         "outfitSlug": "hot_spring",
                     },
+                    {
+                        "outfitWeightThresholdInLb": 700.0,
+                        "mainShape": "🍐",
+                        secondaryShape: "🍐",
+                        "outfit": "Resplendent",
+                        outfitSlug: "resplendent",
+                    },
                 ]
             },
             {
@@ -330,13 +337,6 @@ export const baseMetadata: GameBaseMetadata[] = [
                         "mainShape": "🍐",
                         "outfit": "Base",
                         outfitSlug: "base",
-                    },
-                    {
-                        "outfitWeightThresholdInLb": 700.0,
-                        "mainShape": "🍐",
-                        secondaryShape: "🍐",
-                        "outfit": "Resplendent",
-                        outfitSlug: "resplendent",
                     },
                 ]
             },
